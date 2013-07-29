@@ -1,0 +1,11 @@
+Package: DisplayFINANCE
+Type: Package
+Title: DisplayFINANCE
+Version: 1.0
+Date: 2013-07-29
+Author: Sebastian Cano-Berlanga <cano.berlanga@gmail.com>
+Maintainer: Sebastian Cano-Berlanga <cano.berlanga@gmail.com>
+Depends: moments,stochvol,fPortfolio, xtable, rugarch,gogarch, zoo, timeSeries, PerformanceAnalytics
+Description: Quick acces to useful finance functions
+License: GPL (>= 2)
+URL: http://canoberlanga.tumblr.com
