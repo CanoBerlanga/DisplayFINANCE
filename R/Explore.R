@@ -22,7 +22,8 @@ Explore<-function(x,a=1){
 	axis(1,family="Times")
 	axis(2,family="Times")
 	lines(density(Sim),col="steelblue",lty=2,lwd=1.5)
-	abline(v=qged(0.05, mean = M, sd = SD, nu = NU),lty=2,lwd=1)
+	abline(v=qsged(0.05, mean = M, sd = SD, nu = NU,xi=a),lty=2,lwd=1)
 	print(M.res)
+	print(qsged(0.05, mean = M, sd = SD, nu = NU,xi=a))
 	return(C)
 }
