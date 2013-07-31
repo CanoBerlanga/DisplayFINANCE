@@ -6,24 +6,23 @@ Explore<-function(x,a=1){
     M<-uncmean(model)   
 	SD<-uncvariance(model)^0.5
 	NU<-coef(model)[6]
-	
-	Sim<-rsged(500000, mean = M, sd = SD, nu = NU,xi=a)
-	
-	
+	Sim<-rsged(900000, mean = M, sd = SD, nu = NU,xi=a)
+	VAR<-qsged(0.05, mean = M, sd = SD, nu = NU,xi=a)
 	Stats1<-Descriptiva(x)
 	Stats2<-Descriptiva(Sim)
-	
 	M.res<-rbind(Stats1,Stats2)
-	rownames(M.res)<-c("Real","Simulated")
-	
+	rownames(M.res)<-c("Observed","Simulated")
 	C<-cbind(M,SD,NU)
 	colnames(C)<-c("Mean","SD","Shape")
-	plot(density(x),xlim=c(-7,7),axes=FALSE)
+	rownames(C)<-c("GED")
+	plot(density(x),xlim=c(-7,7),axes=FALSE,lty=1,lwd=1.5,col="grey",main="Returns Distribution",xlab=expression(y[t]),family="Times")
 	axis(1,family="Times")
 	axis(2,family="Times")
-	lines(density(Sim),col="steelblue",lty=2,lwd=1.5)
-	abline(v=qsged(0.05, mean = M, sd = SD, nu = NU,xi=a),lty=2,lwd=1)
-	print(M.res)
-	print(qsged(0.05, mean = M, sd = SD, nu = NU,xi=a))
-	return(C)
+	lines(density(Sim),col="#0191C8",lty=1,lwd=1.5)
+	abline(v=VAR,lty=2,lwd=0.5)
+    text(VAR, 0.005, paste("Value at Risk = ",round(VAR,digits=4),sep=""), offset = 0.5, pos = 4, cex = 0.8, 
+                srt = 0,family="Times")
+	return(
+	list(Parameters=C,VaR=as.numeric(VAR),Statistics=M.res)
+	)
 }
