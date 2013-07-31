@@ -8,6 +8,9 @@ Explore<-function(x,a=1){
 	NU<-coef(model)[6]
 	Sim<-rsged(900000, mean = M, sd = SD, nu = NU,xi=a)
 	VAR<-qsged(0.05, mean = M, sd = SD, nu = NU,xi=a)
+	VARh<-quantile(x,p=0.05)
+	VARM<-cbind(VAR,VARh)
+	colnames(VARM)<-c("GED","Historical")
 	Stats1<-Descriptiva(x)
 	Stats2<-Descriptiva(Sim)
 	M.res<-rbind(Stats1,Stats2)
@@ -20,9 +23,8 @@ Explore<-function(x,a=1){
 	axis(2,family="Times")
 	lines(density(Sim),col="#0191C8",lty=1,lwd=1.5)
 	abline(v=VAR,lty=2,lwd=0.5)
-    text(VAR, 0.005, paste("Value at Risk = ",round(VAR,digits=4),sep=""), offset = 0.5, pos = 4, cex = 0.8, 
-                srt = 0,family="Times")
+    text(VAR, 0.005, paste("Value at Risk = ",round(VAR,digits=4),sep=""), offset = 0.5, pos = 4, cex = 0.8, srt = 0,family="Times")
 	return(
-	list(Parameters=C,VaR=as.numeric(VAR),Statistics=M.res)
+	list(Parameters=C,VaR=VARM,Statistics=M.res)
 	)
 }
