@@ -18,10 +18,24 @@ Explore<-function(x,a=1){
 	C<-cbind(M,SD,NU)
 	colnames(C)<-c("Mean","SD","Shape")
 	rownames(C)<-c("GED")
-	plot(density(x),xlim=c(-7,7),axes=FALSE,lty=1,lwd=1.5,col="grey",main="Returns Distribution",xlab=expression(y[t]),family="Times")
+	
+    plot(density(x),
+    xlim=c(-7,7),
+    axes=FALSE,
+    lty=1,
+    lwd=1.5,
+    col="#AEA79F",
+    main="Returns Distribution",
+    xlab=expression(y[t]),
+    family="Times")
+    
 	axis(1,family="Times")
-	axis(2,family="Times")
-	lines(density(Sim),col="#0191C8",lty=1,lwd=1.5)
+    axis(2,family="Times")
+    
+	lines(density(Sim),
+    col="#0191C8",
+    lty=1,lwd=1.5)
+    
 	abline(v=VAR,lty=2,lwd=0.5)
     text(VAR, 0.005, paste("Value at Risk = ",round(VAR,digits=4),sep=""), offset = 0.5, pos = 4, cex = 0.8, srt = 0,family="Times")
 	return(
