@@ -16,7 +16,8 @@ St<-as.matrix((draws$summary$latent[,6]))
 Res<-as.matrix(draws$summary$para)
 E<-x/St
 MAT<-cbind(x,St,E)
-Ke<-kurtosis(E)+3
+MAT<-as.matrix(MAT)
+Ke<-kurtosis(E)
 Sy<-sqrt(Res[5,1]/(1-Res[2,1]))
 Ky<-Ke*exp(Sy^2)
 names(MAT)<-c("y","St","Et")

@@ -1,2 +1,17 @@
+install.packages(
+
+	"moments", 
+	"stochvol", 
+	"fPortfolio", 
+	"xtable", 
+	"rugarch", 
+	"gogarch", 
+	"zoo", 
+	"timeSeries", 
+	"fGarch", 
+	"PerformanceAnalytics"
+)
+
+
 system("R CMD build DisplayFINANCE")
 system("R CMD INSTALL --build DisplayFINANCE_1.0.tar.gz")
