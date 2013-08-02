@@ -43,7 +43,7 @@ function(x){
     cbind(Spc1,Spc2,Spc3)->S
     sim[1,1:3]<-R
     sim[2,1:3]<-S
-    sim[3:(ncol(x)+2),1:3]<-PESOS;return(sim)
+    sim[3:(ncol(x)+2),1:3]<-PESOS
     #######################
     Spec=portfolioSpec()
 	setNFrontierPoints(Spec) = 300
@@ -67,4 +67,7 @@ function(x){
            points(Spc3,Rpc3,pch=22)
            sharpeRatioLines(Frontier, col = "grey", lwd = 1.5,lty=1,family="Times")
          slope = (Rpc3 - 0)/(Spc3)    
-         abline(0, slope,lty=2,lwd=1,col="dodgerblue4");points(Spc3,Rpc3,pch=18,col="black")}
+         abline(0, slope,lty=2,lwd=1,col="dodgerblue4");points(Spc3,Rpc3,pch=18,col="black")
+
+return(sim)
+}
